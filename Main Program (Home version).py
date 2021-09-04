@@ -6,12 +6,22 @@ import time
 import random
 from random import randint
 
-FnamePATH = "C:/Users/Brend/OneDrive - St Michael's College/Folder/Spam/FNames.txt"
-LnamePATH = "C:/Users/Brend/OneDrive - St Michael's College/Folder/Spam/LNames.txt"
-RmessagePATH = "C:/Users/Brend/OneDrive - St Michael's College/Folder/Spam/LMessages.txt"
+
+
+def randomselect(n):
+    n = (random.randint(0,n))
+    for i in range(n):
+        pressTAB
+    PressEnter
+    
+
+FnamePATH = "C:/DEV/brendonbone/FNames.txt"
+LnamePATH = "C:/DEV/brendonbone/LNames.txt"
+RmessagePATH = "C:/DEV/brendonbone/LMessages.txt"
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
+
 driver.get("https://www.wisortutoring.com/request-a-quote")
 
 
@@ -44,8 +54,15 @@ for line in LmessagesFile:
 LmessagesFile.close()
 
 
+pressTAB = ActionChains(driver) #defines key presses
+pressTAB.send_keys(Keys.TAB)
+
+PressEnter = ActionChains(driver)
+PressEnter.send_keys(Keys.ENTER)
+
+
 number = 0
-while True:
+while True: #sets the forever loop
     i=0
     while i < 5:
 
@@ -69,20 +86,23 @@ while True:
         phonenumber.send_keys("04"+rnumber) #Pick Phonenumber
 
         clickyear = driver.find_element_by_name("checkbox-1f8535df-fbb6-4af4-ac04-660f7ff8fc0b-field")
-        clickyear.click() #clicks what year level
+        clickyear.click()  #clicks what year level
+        randomselect(6) #Use randomsellect function
+        
 
         clicksubject = driver.find_element_by_name("checkbox-fc4a1db9-f695-499e-ac74-1f56e0c1edb9-field")
-        clicksubject.click() #interested subjects
+        clicksubject.click()
+        randomselect(9) #Use randomsellect function
 
         clicktype = driver.find_element_by_name('checkbox-51a19ef7-d947-4ec6-a7da-239c2c821731-field')
         clicktype.click() #clicks on type of help
 
 
-        actions = ActionChains(driver) 
-        actions.send_keys(Keys.TAB)
-        actions.perform()
-        actions.perform()
-        actions.perform()
+
+        pressTAB.perform() #scrolls down to general message
+        pressTAB.perform()
+        pressTAB.perform()
+
 
         message = ActionChains(driver)
         Rmessage = random.choice(listOfmessages)
@@ -90,10 +110,18 @@ while True:
         message.send_keys(rm) #General message
         message.perform()
 
-        actions.perform()
+        pressTAB.perform()
 
+        #Start anti bot
         PressEnter = ActionChains(driver)
         PressEnter.send_keys(Keys.ENTER)
+        PressEnter.perform()
+        time.sleep(.5)
+        PressEnter.perform()
+       
+        input()     #Stop th ecode for a second
+        PressEnter.perform() 
+        time.sleep(.5)
         PressEnter.perform()
 
         timedelay = 1000 * random.random()

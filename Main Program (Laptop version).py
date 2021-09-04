@@ -97,7 +97,14 @@ def spam():
             message.perform()
 
             actions.perform()
+                                    #Start anti bot
+            PressEnter = ActionChains(driver)
+            PressEnter.send_keys(Keys.ENTER)
+            PressEnter.perform()
+            time.sleep(.5)
+            PressEnter.perform()
 
+            input()             #Stop th ecode for a second
             PressEnter = ActionChains(driver)
             PressEnter.send_keys(Keys.ENTER)
             PressEnter.perform()
@@ -107,6 +114,7 @@ def spam():
             print(timedelay)
             time.sleep(timedelay)
 
+
             driver.refresh()
             time.sleep(.5)
             i += 1
@@ -115,6 +123,7 @@ def spam():
         PATH = "C:\Program Files (x86)\chromedriver.exe"
         driver = webdriver.Chrome(PATH)
         driver.get("https://www.wisortutoring.com/request-a-quote")
+        return
 
 
 spam()
