@@ -16,11 +16,14 @@ pressTAB.send_keys(Keys.TAB)
 pressENTER = ActionChains(driver)
 pressENTER.send_keys(Keys.ENTER)
 
-driver.get("chrome://settings/content/protectedContent")
 
-pressTAB.perform()
-pressENTER.perform()
-pressTAB.perform()
-pressENTER.perform()
+def dissable_settings():
+    driver.get("chrome://settings/content/protectedContent")
+
+    pressTAB.perform()
+    pressENTER.perform()
+    pressTAB.perform()
+    pressENTER.perform()
+    driver.close()
 
 
