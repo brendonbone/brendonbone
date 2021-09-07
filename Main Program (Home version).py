@@ -5,12 +5,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
+from capmonster_python import NoCaptchaTaskProxyless
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 import random
 from random import randint
-    
+
 
 FnamePATH = "C:/DEV/brendonbone/FNames.txt"
 LnamePATH = "C:/DEV/brendonbone/LNames.txt"
@@ -18,6 +20,9 @@ RmessagePATH = "C:/DEV/brendonbone/LMessages.txt"
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
+
+website_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
+website_url = driver.current_url    
 
 driver.get("https://www.wisortutoring.com/request-a-quote")
 
@@ -122,20 +127,26 @@ while True: #sets the forever loop
         message.perform()
 
         pressTAB.perform()
+        pressTAB.perform()
+        pressTAB.perform()
+        pressTAB.perform()
+        
+        captcha = NoCaptchaTaskProxyless(client_key="da950b4af117f859d3c61d347e6472c0")
+        taskId = captcha.createTask(website_url, website_key)
+        print("# Task created successfully, waiting for the response.")
+        response = captcha.joinTaskResult(taskId)
+        print("# Response received.")
+        driver.execute_script(f"document.getElementsByClassName('g-recaptcha-response')[0].innerHTML = '{response}';")
+        print("# Response injected to secret input.")
+        time.sleep(15)
 
-        #Start anti bot
-        PressEnter = ActionChains(driver)
-        PressEnter.send_keys(Keys.ENTER)
-        PressEnter.perform()
-        time.sleep(.5)
-        PressEnter.perform()
-       
-        input()     #Stop th ecode for a second
+        input()
+
         PressEnter.perform() 
         time.sleep(.5)
         PressEnter.perform()
 
-        timedelay = 1000 * random.random()
+        timedelay = 10 * random.random()
         print(timedelay)
         time.sleep(timedelay)
 
