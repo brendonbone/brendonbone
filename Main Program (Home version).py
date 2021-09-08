@@ -21,7 +21,7 @@ PATH = "C:\Program Files (x86)\chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
 
-website_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
+website_key = "5ce8490671c10bc325d30348" #Changing this value to see if this can fit the issue
 website_url = driver.current_url    
 
 driver.get("https://www.wisortutoring.com/request-a-quote")
@@ -131,7 +131,7 @@ while True: #sets the forever loop
         pressTAB.perform()
         pressTAB.perform()
         
-        captcha = NoCaptchaTaskProxyless(client_key="da950b4af117f859d3c61d347e6472c0")
+        captcha = NoCaptchaTaskProxyless(client_key="da950b4af117f859d3c61d347e6472c0") #breaks pass the anti bot
         taskId = captcha.createTask(website_url, website_key)
         print("# Task created successfully, waiting for the response.")
         response = captcha.joinTaskResult(taskId)

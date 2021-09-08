@@ -5,7 +5,7 @@ options = Options()
 driver = webdriver.Chrome(options=options, executable_path="C:\Program Files (x86)\chromedriver.exe")
 driver.get("https://www.google.com/recaptcha/api2/demo")
 
-website_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
+website_key = "wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ" #Checking if different website keys work
 website_url = driver.current_url
 
 captcha = NoCaptchaTaskProxyless(client_key="da950b4af117f859d3c61d347e6472c0")
